@@ -1,0 +1,14 @@
+START		::= RUnion
+RUnion		::= RIntersect {"|" RIntersect}
+RIntersect	::= RConcat {"&" concat}
+RConcat		::= RNeg {RNeg}
+RNeg		::= repeats | "~"RNeg
+repeats		::= atom {RStar|RPlus|ROption}
+RStar		::= "*"
+RPlus		::= "+"
+ROption		::= "?"
+atom		::= RNoString | REmptyString | RSingle | RAnyChar | "("RUnion")"
+RNoString	::= "!"
+REmptyString::= "#"
+RSingle		::= "a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"
+RAnyChar	::= "."

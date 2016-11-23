@@ -1,0 +1,9 @@
+START	::= ESeq
+ESeq	::= EBnf {EBnf}
+EBnf	::= name "::=" rules
+EName	::= "\c*"
+ERules	::= part {"|" part}
+EPart	::= symbs | symbs "{" ERules "}"
+ESymbs	::= Symb {Symb}
+Symb	::= ETerm | EName
+ETerm	::= "\"" "\c*" "\""
